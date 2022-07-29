@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 **A 项目代码说明**：
 
   SM3.py：SM3算法
@@ -19,4 +19,4 @@
 **D 贡献说明：**
 
 完成人：李美琳 独自完成
->>>>>>> Stashed changes
+
