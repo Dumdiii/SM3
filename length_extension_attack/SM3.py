@@ -34,7 +34,7 @@ def Fill(message):
     m = m + '1'
     m = m + '0'*(448-len(m)%512) + l_bin
     m = hex(int(m,2))[2:]
-    print("填充后的消息为:",m)
+    # print("填充后的消息为:",m)
     return m
 def Group(m):
     n = len(m)/128
@@ -57,9 +57,9 @@ def Expand(M,n):
         Wstr += (hex(x)[2:] + ' ')
     for x in W_:
         W_str+= (hex(x)[2:] + ' ')
-    print("第{}个消息分组 扩展后消息：".format(n+1))
-    print("W:",Wstr)
-    print("W':",W_str)
+    # print("第{}个消息分组 扩展后消息：".format(n+1))
+    # print("W:",Wstr)
+    # print("W':",W_str)
     return W,W_
 
 def CF(V,M,i):
@@ -78,8 +78,8 @@ def CF(V,M,i):
         G = ROL(F,19)
         F = E
         E = P0(TT2)
-        print("j={}:".format(j))
-        print(hex(A),hex(B),hex(C),hex(D),hex(E),hex(F),hex(G),hex(H))
+        # print("j={}:".format(j))
+        # print(hex(A),hex(B),hex(C),hex(D),hex(E),hex(F),hex(G),hex(H))
     a,b,c,d,e,f,g,h = V[i]
     V_ = [a^A,b^B,c^C,d^D,e^E,f^F,g^G,h^H]
     return V_
@@ -92,14 +92,15 @@ def Iterate(M):
         V.append(CF(V,M,i))
     return V[n]
 
-if __name__ == '__main__':
-    message = '61626364616263646162636461626364616263646162636461626364616263646162636461626364616263646162636461626364616263646162636461626364'
+#if __name__ == '__main__':
+def SM3(message):
     m = Fill(message)   #填充后消息
     M = Group(m)  #数据分组
     Vn=Iterate(M) #迭代
     result = ''
     for x in Vn:
-        result += (hex(x)[2:]+' ')
-    print("杂凑值:",result)
+        result += (hex(x)[2:])
+    return result
+    #print("杂凑值:",result)
 
 
